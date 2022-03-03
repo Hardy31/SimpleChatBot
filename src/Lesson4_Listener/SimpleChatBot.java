@@ -1,13 +1,17 @@
-package Lesson3_Panel;
+package Lesson4_Listener;
 
 //https://www.youtube.com/watch?v=cQ0Em2BxCz0
 //https://github.com/biblelamp/JavaExercises/blob/master/Java%202/bot/SimpleBot.java
-// Окончание 29-23
+// Окончание 35-32
 
 import javax.swing.*;
+import javax.swing.text.SimpleAttributeSet;
+import javax.swing.text.StyledDocument;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class SimpleChatBot extends JFrame {
+public class SimpleChatBot extends JFrame implements ActionListener {
     final String TITLE_OF_PROGRAMM = "Chatter : SIMPLE CHAT-BOT";
     final int START_LOCATION = 200;
     final int WINDOW_WIDTH = 350;
@@ -35,13 +39,13 @@ public class SimpleChatBot extends JFrame {
         bp.setLayout(new BoxLayout(bp, BoxLayout.X_AXIS));
 
         ai = new JCheckBox("AI");
-//        ai.doClick();
+        ai.doClick();
 
         message = new JTextField();
-//        message.addActionListener(this);
+        message.addActionListener(this);
 
         JButton enter = new JButton("enter");
-//        enter.addActionListener(this);
+        enter.addActionListener(this);
 
         bp.add(ai);
         bp.add(message);
@@ -50,5 +54,15 @@ public class SimpleChatBot extends JFrame {
         add(BorderLayout.CENTER,scrollPane);
         add(BorderLayout.SOUTH,bp);
         setVisible(true);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent actionEvent) {
+
+        if(message.getText().trim().length()>0){
+            dialogue.append(message.getText() + "\n");
+        }
+        message.setText("");
+        message.requestFocusInWindow();
     }
 }

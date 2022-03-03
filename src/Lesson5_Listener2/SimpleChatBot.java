@@ -1,13 +1,17 @@
-package Lesson3_Panel;
+package Lesson5_Listener2;
 
 //https://www.youtube.com/watch?v=cQ0Em2BxCz0
 //https://github.com/biblelamp/JavaExercises/blob/master/Java%202/bot/SimpleBot.java
-// Окончание 29-23
+// Окончание 45-13
+
+import FromGit.SimpleBot;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class SimpleChatBot extends JFrame {
+public class SimpleChatBot extends JFrame implements ActionListener {
     final String TITLE_OF_PROGRAMM = "Chatter : SIMPLE CHAT-BOT";
     final int START_LOCATION = 200;
     final int WINDOW_WIDTH = 350;
@@ -15,7 +19,7 @@ public class SimpleChatBot extends JFrame {
     JTextArea dialogue;
     JCheckBox ai;
     JTextField message;
-//    SimpleBot sBot;
+    SimpleBot sBot;
 
 
     public static void main(String[] args) {
@@ -35,13 +39,13 @@ public class SimpleChatBot extends JFrame {
         bp.setLayout(new BoxLayout(bp, BoxLayout.X_AXIS));
 
         ai = new JCheckBox("AI");
-//        ai.doClick();
+        ai.doClick();
 
         message = new JTextField();
-//        message.addActionListener(this);
+        message.addActionListener(this);
 
         JButton enter = new JButton("enter");
-//        enter.addActionListener(this);
+        enter.addActionListener(this);
 
         bp.add(ai);
         bp.add(message);
@@ -50,5 +54,19 @@ public class SimpleChatBot extends JFrame {
         add(BorderLayout.CENTER,scrollPane);
         add(BorderLayout.SOUTH,bp);
         setVisible(true);
+        sBot = new SimpleBot();
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent actionEvent) {
+
+        if(message.getText().trim().length()>0){
+            dialogue.append(message.getText() + "\n");
+            dialogue.append(TITLE_OF_PROGRAMM.substring(0,9) +
+                    sBot.sayInReturn(message.getText(), ai.isSelected()) +
+                    "\n");
+        }
+        message.setText("");
+        message.requestFocusInWindow();
     }
 }

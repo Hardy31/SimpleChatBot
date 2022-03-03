@@ -1,5 +1,8 @@
-package Final;
+package FromGit;
 
+//https://www.youtube.com/watch?v=cQ0Em2BxCz0
+//https://github.com/biblelamp/JavaExercises/blob/master/Java%202/bot/SimpleBot.java
+// Окончание ХХ-ХХ
 /**
  * Class SimpleBot
  *

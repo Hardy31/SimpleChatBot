@@ -1,7 +1,9 @@
 package Lesson2_TextPanel;
 
 //https://www.youtube.com/watch?v=cQ0Em2BxCz0
-// Окончание ХХ-ХХ
+//https://github.com/biblelamp/JavaExercises/blob/master/Java%202/bot/SimpleBot.java
+// Окончание 26-00
+
 
 import javax.swing.*;
 import java.awt.*;

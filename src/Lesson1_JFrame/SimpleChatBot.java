@@ -1,6 +1,8 @@
 package Lesson1_JFrame;
 
 //https://www.youtube.com/watch?v=cQ0Em2BxCz0
+//https://github.com/biblelamp/JavaExercises/blob/master/Java%202/bot/SimpleBot.java
+
 // Окончание 19-28
 
 import javax.swing.*;
