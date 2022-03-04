@@ -1,0 +1,70 @@
+package Lesson8_BotSecond;
+
+//https://www.youtube.com/watch?v=cQ0Em2BxCz0
+//https://github.com/biblelamp/JavaExercises/blob/master/Java%202/bot/SimpleBot.java
+// до конца!
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class SimpleChatBot extends JFrame implements ActionListener {
+    final String TITLE_OF_PROGRAMM = "Chatter : SIMPLE CHAT-BOT";
+    final int START_LOCATION = 200;
+    final int WINDOW_WIDTH = 350;
+    final int WINDOW_HEIGHT = 500;
+    JTextArea dialogue;
+    JCheckBox ai;
+    JTextField message;
+    SimpleBot sBot;
+
+
+    public static void main(String[] args) {
+        SimpleChatBot simpleChatBot = new SimpleChatBot();
+    }
+
+    public SimpleChatBot() throws HeadlessException {
+        setTitle(TITLE_OF_PROGRAMM);
+        setBounds(START_LOCATION, START_LOCATION, WINDOW_WIDTH, WINDOW_HEIGHT);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        dialogue = new JTextArea();
+        dialogue.setLineWrap(true);
+        JScrollPane scrollPane = new JScrollPane(dialogue);
+
+        JPanel bp = new JPanel();
+        bp.setLayout(new BoxLayout(bp, BoxLayout.X_AXIS));
+
+        ai = new JCheckBox("AI");
+        ai.doClick();
+
+        message = new JTextField();
+        message.addActionListener(this);
+
+        JButton enter = new JButton("enter");
+        enter.addActionListener(this);
+
+        bp.add(ai);
+        bp.add(message);
+        bp.add(enter);
+
+        add(BorderLayout.CENTER,scrollPane);
+        add(BorderLayout.SOUTH,bp);
+        setVisible(true);
+        sBot = new SimpleBot();
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent actionEvent) {
+
+        if(message.getText().trim().length()>0){
+            dialogue.append(message.getText() + "\n");
+            dialogue.append(TITLE_OF_PROGRAMM.substring(0,9) +
+                    sBot.sayInReturn(message.getText(), ai.isSelected()) +
+                    "\n");
+        }
+        message.setText("");
+        message.requestFocusInWindow();
+    }
+}
